@@ -1,191 +1,180 @@
-# **₿Proof**
+# ₿Proof (MVP)
 
-# Digital Certificate Signature System
+## Tamper-Evident Digital Certificate Issuance & Verification
 
-A tamper-proof digital certificate issuance and verification system for Bitcoin Dada & Dada Devs.
+₿Proof is a Minimum Viable Product (MVP) for issuing and verifying digital certificates for Bitcoin Dada & Dada Devs.
+
+⚠️ IMPORTANT  
+This system provides tamper-evidence, not immutability.  
+Certificates are currently stored using browser localStorage, which is suitable for prototyping but NOT production use.
+
+Full trust-minimized verification requires anchoring certificate hashes to public, external systems (e.g. Bitcoin via OpenTimestamps or decentralized networks like Nostr). These are planned upgrades.
+
+---
 
 ## 🎯 Overview
 
-This system provides a secure way to issue and verify digital certificates with:
-- **Unique Certificate IDs** - Format: DD-YYYY-XXXXXX (e.g., DD-2025-8F32C1)
-- **Digital Signatures** - SHA-256 hash-based signatures for tamper detection
-- **QR Code Verification** - Scan QR codes to instantly verify certificate authenticity
-- **PDF Export** - Download certificates as PDF files
-- **Beautiful UI** - Tech Minimalist design (Black, Gold, White)
+₿Proof enables certificate issuance and verification using:
+
+- Unique Certificate IDs  
+  Format: DD-YYYY-XXXXXX (e.g. DD-2025-8F32C1)
+- SHA-256 hashing for integrity checking
+- QR code verification for quick access
+- PDF export for downloadable certificates
+- Modern minimalist UI (black, gold, white)
+
+---
 
 ## ✨ Features
 
-### MVP Requirements ✅
-- ✅ Generate unique certificate ID
-- ✅ Create tamper-proof digital signature (SHA-256)
-- ✅ Attach signature to certificate
-- ✅ QR Code for verification
-- ✅ Simple admin issuance flow
+### MVP Features
+- Generate unique certificate IDs
+- Compute SHA-256 hashes from certificate fields
+- Store certificate data + hash together (MVP storage)
+- QR codes linking to verification pages
+- PDF certificate download
 
-### Bonus Features
-- ✅ Dashboard to view issued certificates
-- ✅ Certificate verification page
-- ✅ Beautiful, modern UI
-- ✅ PDF download functionality
+### Admin & UX
+- Dashboard listing issued certificates
+- Public certificate verification page
+- Clean, modern interface
+
+---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 16+ and npm/yarn
+- Node.js 16+
+- npm or yarn
 
 ### Installation
+npm install
 
-1. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+### Run Development Server
+npm run dev
 
-2. **Start development server:**
-   ```bash
-   npm run dev
-   ```
+Open your browser at:  
+http://localhost:5173
 
-3. **Open your browser:**
-   Navigate to `http://localhost:5173`
-
-### Build for Production
-
-```bash
+### Production Build
 npm run build
-```
 
-The production build will be in the `dist` folder.
+The production build will be located in the dist/ directory.
 
-## 📖 How It Works
+---
+
+## 📖 How It Works (MVP)
 
 ### 1. Issuing a Certificate
 
-1. Navigate to **"Issue Certificate"** from the sidebar
-2. Fill in the form:
+1. Navigate to "Issue Certificate"
+2. Fill in:
    - Student Name
    - Cohort
    - Course Type
    - Issue Date
-3. Click **"Generate Certificate"**
-4. The system will:
-   - Generate a unique Certificate ID (e.g., DD-2025-8F32C1)
-   - Create a SHA-256 digital signature from the certificate data
-   - Generate a QR code linking to the verification page
-   - Display the certificate preview
-5. Click **"Download PDF"** to save the certificate
+3. Click "Generate Certificate"
+
+The system will:
+- Generate a unique Certificate ID
+- Compute a SHA-256 hash from certificate data
+- Store the data and hash together
+- Generate a QR code for verification
+- Display a certificate preview
+
+You may then download the certificate as a PDF.
+
+---
 
 ### 2. Verifying a Certificate
 
-**Method 1: Using Certificate ID**
-1. Navigate to **"Verify"** from the sidebar
-2. Enter the Certificate ID
-3. Click **"Verify Certificate"**
-4. View the verification results
+Method 1: Certificate ID
+- Navigate to "Verify"
+- Enter the Certificate ID
+- View verification results
 
-**Method 2: Using QR Code**
-1. Scan the QR code on the certificate
-2. You'll be redirected to the verification page
-3. View the verification results automatically
+Method 2: QR Code
+- Scan the QR code on the certificate
+- Automatically open the verification page
 
-### Verification Results
+---
 
-The system checks:
-- ✅ **Signature Valid** - Digital signature matches expected hash
-- ✅ **Hash Matches** - Certificate data hasn't been altered
-- ✅ **Tampered** - Shows if certificate has been modified
+## ✅ Verification Logic
 
-## 🔒 Security
+During verification, the system:
 
-### How It Prevents Forgery
+1. Recomputes the SHA-256 hash from displayed certificate fields
+2. Compares it to the stored hash
+3. Displays the result:
 
-1. **Digital Signature (SHA-256 Hash)**
-   - Each certificate's data (ID, student name, cohort, course, date) is hashed using SHA-256
-   - The hash is stored with the certificate
-   - Any modification to the certificate data will produce a different hash
+- Valid – Hash matches stored record
+- Modified – Certificate data differs from stored record
 
-2. **Verification Process**
-   - When verifying, the system recalculates the hash from the stored certificate data
-   - Compares it with the stored signature
-   - If they don't match, the certificate has been tampered with
+NOTE: Because certificates are stored locally in this MVP, verification is strongest when performed against the issuer’s dataset.
 
-3. **Certificate Storage**
-   - Currently uses browser localStorage (for MVP)
-   - In production, certificates should be stored in a secure database
-   - Consider using blockchain (OpenTimestamps) or Nostr for additional immutability
+---
 
-### Why This Solution is Secure
+## 🔒 Security Notes (Honest)
 
-- **Cryptographic Hashing**: SHA-256 is a one-way function - you cannot reverse-engineer the original data from the hash
-- **Tamper Detection**: Any change to certificate data results in a completely different hash
-- **Unique IDs**: Each certificate has a unique identifier that cannot be duplicated
-- **QR Code Verification**: Provides instant access to verification without manual entry
+### What This MVP Does
+- Detects changes to certificate fields relative to a stored record
+- Makes casual forgery more difficult
+- Demonstrates cryptographic integrity checks
 
-## 📁 Project Structure
+### What This MVP Does NOT Do (Yet)
+- Provide immutability or global consensus
+- Prevent malicious re-issuance of altered certificates
+- Enable independent verification without trusting issuer storage
+- Anchor data to Bitcoin or any blockchain
 
-```
-dadadigital/
-├── src/
-│   ├── components/
-│   │   ├── Layout.jsx          # Main layout with sidebar
-│   │   ├── Layout.css
-│   │   ├── CertificatePreview.jsx  # Certificate display component
-│   │   └── CertificatePreview.css
-│   ├── pages/
-│   │   ├── Dashboard.jsx       # Dashboard with stats
-│   │   ├── Dashboard.css
-│   │   ├── IssueCertificate.jsx    # Certificate issuance form
-│   │   ├── IssueCertificate.css
-│   │   ├── PublicVerification.jsx  # Public verification page
-│   │   ├── PublicVerification.css
-│   │   ├── Settings.jsx        # Settings page
-│   │   └── Settings.css
-│   ├── utils/
-│   │   └── certificateUtils.js # Certificate generation & verification logic
-│   ├── App.jsx                 # Main app component with routing
-│   ├── main.jsx               # Entry point
-│   └── index.css              # Global styles
-├── package.json
-├── vite.config.js
-└── README.md
-```
+---
 
 ## 🛠️ Technology Stack
 
-- **React 18** - UI framework
-- **React Router** - Navigation
-- **Vite** - Build tool
-- **crypto-js** - SHA-256 hashing
-- **qrcode.react** - QR code generation
-- **jsPDF** - PDF generation
-- **html2canvas** - Canvas rendering for PDF
+- React 18
+- React Router
+- Vite
+- crypto-js (SHA-256)
+- qrcode.react
+- jsPDF
+- html2canvas
 
-## 📝 Certificate Format
+---
 
-Each certificate includes:
-- **Header**: Bitcoin Dada × Dada Devs seal and branding
-- **Title**: "Certificate of Completion"
-- **Student Information**: Name, Course, Cohort
-- **Issue Date**: Formatted date
-- **QR Code**: Links to verification page
-- **Certificate ID**: Unique identifier
-- **Digital Signature**: SHA-256 hash (truncated for display)
+## 📁 Project Structure
 
-## 🔮 Future Enhancements
+dadadigital/
+├── src/
+│   ├── components/
+│   ├── pages/
+│   ├── utils/
+│   ├── App.jsx
+│   ├── main.jsx
+│   └── index.css
+├── package.json
+├── vite.config.js
+└── README.md
 
-For production deployment, consider:
-- [ ] Database storage (PostgreSQL, MongoDB)
-- [ ] Blockchain integration (OpenTimestamps, Bitcoin)
-- [ ] Nostr integration for decentralized verification
-- [ ] Bulk certificate generation
-- [ ] Certificate revocation system
-- [ ] Email delivery
-- [ ] Admin authentication
-- [ ] Certificate templates
-- [ ] API endpoints for programmatic access
+---
+
+## 🔮 Future Enhancements (Production Roadmap)
+
+- Database storage (PostgreSQL / MongoDB)
+- Admin authentication and audit logs
+- Certificate revocation system
+- Canonical certificate schemas
+- Bitcoin timestamp anchoring (OpenTimestamps)
+- Decentralized publication (Nostr)
+- Merkle batching for scalable anchoring
+- API endpoints for programmatic access
+- Bulk certificate issuance
+- Email delivery
+
+---
 
 ## 📄 License
 
-This project is built for Bitcoin Dada, Dada Devs & the larger community.
+Built for Bitcoin Dada, Dada Devs, and the wider community.
 
-
-**Note**: This is an MVP. For production use, implement proper database storage, authentication, and consider blockchain integration for additional immutability.
+This project is an MVP intended for learning and experimentation.  
+Production deployment requires proper storage, authentication, auditability, and external anchoring.
