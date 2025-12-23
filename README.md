@@ -1,5 +1,4 @@
 # ₿Proof (MVP)
-## Tamper-Evident Digital Certificate Issuance & Verification
 
 Tamper-evident digital certificates today, Bitcoin-anchored verification tomorrow — built for the Bitcoin Dada & Dada Devs community.
 
