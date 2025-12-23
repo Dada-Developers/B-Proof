@@ -1,27 +1,25 @@
 # ₿Proof (MVP)
-
 ## Tamper-Evident Digital Certificate Issuance & Verification
 
-₿Proof is a Minimum Viable Product (MVP) for issuing and verifying digital certificates for Bitcoin Dada & Dada Devs.
+₿Proof is a Minimum Viable Product (MVP) for issuing and verifying digital certificates for **Bitcoin Dada & Dada Devs**.
 
-⚠️ IMPORTANT  
-This system provides tamper-evidence, not immutability.  
-Certificates are currently stored using browser localStorage, which is suitable for prototyping but NOT production use.
+⚠️ **Important**  
+This system provides **tamper-evidence**, not immutability.  
+Certificates are currently stored using **browser localStorage**, which is suitable for prototyping but **NOT production-grade**.
 
-Full trust-minimized verification requires anchoring certificate hashes to public, external systems (e.g. Bitcoin via OpenTimestamps or decentralized networks like Nostr). These are planned upgrades.
+Strong immutability and independent verification require anchoring certificate hashes to public systems such as **Bitcoin (OpenTimestamps)** or decentralized networks like **Nostr**. These are planned upgrades.
 
 ---
 
 ## 🎯 Overview
 
 ₿Proof enables certificate issuance and verification using:
-
-- Unique Certificate IDs  
-  Format: DD-YYYY-XXXXXX (e.g. DD-2025-8F32C1)
-- SHA-256 hashing for integrity checking
-- QR code verification for quick access
-- PDF export for downloadable certificates
-- Modern minimalist UI (black, gold, white)
+- **Unique Certificate IDs**  
+  Format: `DD-YYYY-XXXXXX` (e.g., `DD-2025-8F32C1`)
+- **SHA-256 hashing** for integrity checks
+- **QR code verification** for fast access
+- **PDF export** for downloadable certificates
+- **Modern minimalist UI** (black, gold, white)
 
 ---
 
@@ -32,7 +30,7 @@ Full trust-minimized verification requires anchoring certificate hashes to publi
 - Compute SHA-256 hashes from certificate fields
 - Store certificate data + hash together (MVP storage)
 - QR codes linking to verification pages
-- PDF certificate download
+- PDF certificate downloads
 
 ### Admin & UX
 - Dashboard listing issued certificates
@@ -48,18 +46,23 @@ Full trust-minimized verification requires anchoring certificate hashes to publi
 - npm or yarn
 
 ### Installation
+```bash
 npm install
+```
 
 ### Run Development Server
+```bash
 npm run dev
+```
 
-Open your browser at:  
-http://localhost:5173
+Open your browser at: `http://localhost:5173`
 
 ### Production Build
+```bash
 npm run build
+```
 
-The production build will be located in the dist/ directory.
+The production build will be generated in the `dist/` directory.
 
 ---
 
@@ -67,13 +70,13 @@ The production build will be located in the dist/ directory.
 
 ### 1. Issuing a Certificate
 
-1. Navigate to "Issue Certificate"
+1. Navigate to **Issue Certificate**
 2. Fill in:
    - Student Name
    - Cohort
    - Course Type
    - Issue Date
-3. Click "Generate Certificate"
+3. Click **Generate Certificate**
 
 The system will:
 - Generate a unique Certificate ID
@@ -84,33 +87,27 @@ The system will:
 
 You may then download the certificate as a PDF.
 
----
-
 ### 2. Verifying a Certificate
 
-Method 1: Certificate ID
-- Navigate to "Verify"
+**Method 1: Certificate ID**
+- Navigate to **Verify**
 - Enter the Certificate ID
 - View verification results
 
-Method 2: QR Code
+**Method 2: QR Code**
 - Scan the QR code on the certificate
 - Automatically open the verification page
 
----
-
-## ✅ Verification Logic
+### ✅ Verification Logic
 
 During verification, the system:
-
 1. Recomputes the SHA-256 hash from displayed certificate fields
-2. Compares it to the stored hash
+2. Compares it with the stored hash
 3. Displays the result:
+   - **Valid** — Hash matches stored record
+   - **Modified** — Certificate data differs from stored record
 
-- Valid – Hash matches stored record
-- Modified – Certificate data differs from stored record
-
-NOTE: Because certificates are stored locally in this MVP, verification is strongest when performed against the issuer’s dataset.
+⚠️ Because certificates are stored locally in this MVP, verification is strongest when performed against the issuer's dataset.
 
 ---
 
@@ -142,7 +139,7 @@ NOTE: Because certificates are stored locally in this MVP, verification is stron
 ---
 
 ## 📁 Project Structure
-
+```
 dadadigital/
 ├── src/
 │   ├── components/
@@ -154,6 +151,7 @@ dadadigital/
 ├── package.json
 ├── vite.config.js
 └── README.md
+```
 
 ---
 
@@ -174,7 +172,6 @@ dadadigital/
 
 ## 📄 License
 
-Built for Bitcoin Dada, Dada Devs, and the wider community.
+Built for **Bitcoin Dada**, **Dada Devs**, and the wider community.
 
-This project is an MVP intended for learning and experimentation.  
-Production deployment requires proper storage, authentication, auditability, and external anchoring.
+This project is an MVP intended for learning and experimentation. Production deployment requires proper storage, authentication, auditability, and external anchoring.
