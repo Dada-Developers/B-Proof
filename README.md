@@ -3,7 +3,7 @@
 
 ₿Proof is a Minimum Viable Product (MVP) for issuing and verifying digital certificates for **Bitcoin Dada & Dada Devs**.
 
-⚠️ **Important**  
+ **Important**  
 This system provides **tamper-evidence**, not immutability.  
 Certificates are currently stored using **browser localStorage**, which is suitable for prototyping but **NOT production-grade**.
 
@@ -11,7 +11,7 @@ Strong immutability and independent verification require anchoring certificate h
 
 ---
 
-## 🎯 Overview
+##  Overview
 
 ₿Proof enables certificate issuance and verification using:
 - **Unique Certificate IDs**  
@@ -23,7 +23,7 @@ Strong immutability and independent verification require anchoring certificate h
 
 ---
 
-## ✨ Features
+##  Features
 
 ### MVP Features
 - Generate unique certificate IDs
@@ -39,7 +39,7 @@ Strong immutability and independent verification require anchoring certificate h
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### Prerequisites
 - Node.js 16+
@@ -98,7 +98,7 @@ You may then download the certificate as a PDF.
 - Scan the QR code on the certificate
 - Automatically open the verification page
 
-### ✅ Verification Logic
+###  Verification Logic
 
 During verification, the system:
 1. Recomputes the SHA-256 hash from displayed certificate fields
@@ -107,11 +107,11 @@ During verification, the system:
    - **Valid** — Hash matches stored record
    - **Modified** — Certificate data differs from stored record
 
-⚠️ Because certificates are stored locally in this MVP, verification is strongest when performed against the issuer's dataset.
+ Because certificates are stored locally in this MVP, verification is strongest when performed against the issuer's dataset.
 
 ---
 
-## 🔒 Security Notes (Honest)
+##  Security Notes (Honest)
 
 ### What This MVP Does
 - Detects changes to certificate fields relative to a stored record
@@ -155,7 +155,7 @@ dadadigital/
 
 ---
 
-## 🔮 Future Enhancements (Production Roadmap)
+##  Future Enhancements (Production Roadmap)
 
 - Database storage (PostgreSQL / MongoDB)
 - Admin authentication and audit logs
