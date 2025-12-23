@@ -1,6 +1,6 @@
 # ₿Proof (MVP)
 
-Tamper-evident digital certificates today, Bitcoin-anchored verification tomorrow — built for the Bitcoin Dada & Dada Devs community.
+##Tamper-evident digital certificates today, Bitcoin-anchored verification tomorrow — built for the Bitcoin Dada & Dada Devs community.
 
  **Important**  
 This system provides **tamper-evidence**, not immutability.  
