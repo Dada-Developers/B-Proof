@@ -1,3 +1,4 @@
+##₿Proof
 # Digital Certificate Signature System
 
 A tamper-proof digital certificate issuance and verification system for Bitcoin Dada & Dada Devs.
@@ -183,12 +184,7 @@ For production deployment, consider:
 
 ## 📄 License
 
-This project is built for Bitcoin Dada & Dada Devs.
+This project is built for Bitcoin Dada, Dada Devs & the larger community.
 
-## 👥 Credits
-
-Built for Bitcoin Dada × Dada Devs Digital Certificate Challenge
-
----
 
 **Note**: This is an MVP. For production use, implement proper database storage, authentication, and consider blockchain integration for additional immutability.
