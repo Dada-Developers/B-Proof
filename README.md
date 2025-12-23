@@ -66,7 +66,7 @@ The production build will be generated in the `dist/` directory.
 
 ---
 
-## 📖 How It Works (MVP)
+##  How It Works (MVP)
 
 ### 1. Issuing a Certificate
 
@@ -126,7 +126,7 @@ During verification, the system:
 
 ---
 
-## 🛠️ Technology Stack
+##  Technology Stack
 
 - React 18
 - React Router
@@ -138,7 +138,7 @@ During verification, the system:
 
 ---
 
-## 📁 Project Structure
+##  Project Structure
 ```
 dadadigital/
 ├── src/
@@ -170,7 +170,7 @@ dadadigital/
 
 ---
 
-## 📄 License
+##  License
 
 Built for **Bitcoin Dada**, **Dada Devs**, and the wider community.
 
