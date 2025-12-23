@@ -1,4 +1,5 @@
-##₿Proof
+#₿Proof
+
 # Digital Certificate Signature System
 
 A tamper-proof digital certificate issuance and verification system for Bitcoin Dada & Dada Devs.
